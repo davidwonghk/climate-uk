@@ -30,7 +30,7 @@ def pull(request):
 
 def _stream_pull():
     yield '['
-    for c in app.main.pull(Climate):
+    for c in app.main.ClimateApp(Climate).pull():
         yield "{%s},"%c
     yield ']'
     

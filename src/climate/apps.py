@@ -9,5 +9,4 @@ class ClimateConfig(AppConfig):
     
     def ready(self):
         model = self.get_model('Climate')
-        app.main.pull(model, True)
-    
+        app.main.ClimateApp(model).pullAtStartup()
