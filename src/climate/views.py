@@ -8,7 +8,7 @@ import json
 import app.main
 from climate.models import Climate
 
-# Create your views here.
+
 def index(request):
     
     #remove the last_update field
@@ -35,5 +35,21 @@ def _stream_pull():
     yield ']'
     
 
+def options(request):
+    op_dict = {}
+    _add_options(op_dict, 'region')
+    _add_options(op_dict, 'type')
+    _add_options(op_dict, 'year', True)
+    _add_options(op_dict, 'month', True)
+    return HttpResponse(json.dumps(op_dict), content_type='application/json')
+        
+def _add_options(op_dict, key, numeric=False):
+    op_list = []
+    for i in Climate.objects.values(key).distinct():
+        op_list.append(i[key])
+    if numeric:
+        op_list = [int(x) for x in op_list]
+
+    op_dict[key] = sorted(op_list)
 
 
