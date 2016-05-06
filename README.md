@@ -11,6 +11,7 @@ and provide RESTFUL Webservice to frontend.
 ## PREREQUEST
 - Python 2.7.6
 - Django 1.9.5
+- django-cors-headers (https://github.com/ottoyiu/django-cors-headers/)
 
 ## INSTALL, CONFIGURATION AND START
 1. downlaod all the source code and run the following command in the "server" folder
