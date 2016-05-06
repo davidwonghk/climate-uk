@@ -15,14 +15,14 @@ def index(request):
     return HttpResponse(_stream_index(request.GET), content_type='application/json')
     
 def _stream_index(queryDict):
-    query = Climate.objects.values('region', 'type', 'year', 'month').annotate(last_update=Max('lastUpdate'))
+    query = Climate.objects.values('region', 'type', 'year', 'month', 'data').annotate(last_update=Max('lastUpdate'))
     query = query.filter(**queryDict.dict())
     
     yield '['
     for c in query.order_by('year','month'):
         del c['last_update']
-        yield "%s,"%c
-    yield ']'
+        yield ("%s,"%c).replace("u'", "'").replace("'", '"')
+    yield '{}]'
     
 
 def pull(request):
@@ -31,7 +31,7 @@ def pull(request):
 def _stream_pull():
     yield '['
     for c in app.main.ClimateApp(Climate).pull():
-        yield "{%s},"%c
+        yield "%s"%c
     yield ']'
     
 
