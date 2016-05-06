@@ -1,0 +1,41 @@
+<ion-view title="UK Climate App" id="page1">
+    <ion-content padding="true" class="has-header">
+	
+        <div class="list card">
+            <div class="item item-divider">Region</div>
+            <div class="item item-body">
+                <form class="list">
+                    <label class="item item-select">
+                        <span class="input-label">Select</span>
+                        <select ng-model="data.regionSelect" ng-options="r for r in regions">
+						</select>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Statistic Type</div>
+            <div class="item item-body">
+                <form class="list">
+                    <label class="item item-select">
+                        <span class="input-label">Select</span>
+                        <select ng-model="data.typeSelect" ng-options="t for t in types">
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Year</div>
+            <div class="item item-body">
+                <form class="list">
+                    <label class="item item-select">
+                        <span class="input-label">Select</span>
+                        <select ng-model="data.yearSelect" ng-options="y for y in years">
+                    </label>
+                </form>
+            </div>
+        </div>
+        <button id="uKClimateApp-buttonQuery" class="button button-positive  button-block">Query</button>
+		<div class="ct-chart ct-perfect-fourth"></div>
+    </ion-content>
+</ion-view>
